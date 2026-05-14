@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Primary Navigation">
+        <div class="brand">
+          <h1>Deema Hub</h1>
+          <p>Student Portfolio Dashboard</p>
+        </div>
+
+        <nav class="nav-menu">
+          <a class="nav-link active" href="#" aria-current="page">
+            <span class="icon" aria-hidden="true">⌂</span>
+            <span>Dashboard</span>
+          </a>
+          <a class="nav-link" href="#">
+            <span class="icon" aria-hidden="true">⚙</span>
+            <span>My Projects</span>
+          </a>
+          <a class="nav-link" href="#">
+            <span class="icon" aria-hidden="true">★</span>
+            <span>My Skills</span>
+          </a>
+          <a class="nav-link" href="#">
+            <span class="icon" aria-hidden="true">☰</span>
+            <span>Learning Roadmap</span>
+          </a>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <header class="page-header">
+          <div>
+            <h2>Welcome Back, Deema!</h2>
+            <p>Your learning progress snapshot for today.</p>
+          </div>
+          <div class="admin-actions">
+            <button id="admin-login-btn" class="secondary-btn admin-access-btn" type="button">
+              <span aria-hidden="true">🔒</span>
+              <span>Admin</span>
+            </button>
+            <button id="admin-logout-btn" class="secondary-btn admin-access-btn hidden" type="button">
+              <span aria-hidden="true">🔓</span>
+              <span>Logout</span>
+            </button>
+          </div>
+        </header>
+
+        <section class="stats-grid" aria-label="Key Performance Stats">
+          <article class="stat-card stat-card--soft">
+            <div class="stat-head">
+              <span class="stat-icon" aria-hidden="true">○</span>
+              <h3>Path</h3>
+            </div>
+            <p class="stat-value">Frontend Student</p>
+          </article>
+          <article class="stat-card">
+            <div class="stat-head">
+              <span class="stat-icon" aria-hidden="true">&lt;/&gt;</span>
+              <h3>Current Projects</h3>
+            </div>
+            <p class="stat-value">1</p>
+          </article>
+          <article class="stat-card">
+            <div class="stat-head">
+              <span class="stat-icon" aria-hidden="true">○</span>
+              <h3>Completed Projects</h3>
+            </div>
+            <p class="stat-value">4</p>
+          </article>
+          <article class="stat-card stat-card--soft">
+            <div class="stat-head">
+              <span class="stat-icon" aria-hidden="true">&lt;/&gt;</span>
+              <h3>Focus Mode</h3>
+            </div>
+            <p class="stat-value">On 🚀</p>
+          </article>
+        </section>
+
+        <section class="projects-section" aria-label="Current Projects">
+          <div class="projects-header">
+            <div class="projects-title-row">
+              <h3>Current Projects</h3>
+              <span id="admin-status-badge" class="admin-badge" aria-live="polite">
+                View Only
+              </span>
+            </div>
+            <button id="add-project-btn" class="primary-btn" type="button">
+              <span aria-hidden="true">＋</span>
+              <span>Add New Project</span>
+            </button>
+          </div>
+
+          <div class="table-wrapper">
+            <table class="projects-table">
+              <thead>
+                <tr>
+                  <th>Project Name</th>
+                  <th>Tech Stack</th>
+                  <th>Category</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="projects-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="project-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3 id="project-modal-title">Add New Project</h3>
+          <button id="close-modal-btn" class="icon-btn" type="button" aria-label="Close form">✕</button>
+        </div>
+
+        <form id="project-form" class="project-form">
+          <label for="project-name">Project Name</label>
+          <input id="project-name" name="name" type="text" placeholder="e.g. Watch Store" required />
+
+          <label for="project-tech-stack">Tech Stack</label>
+          <input id="project-tech-stack" name="techStack" type="text" placeholder="e.g. HTML, CSS, JavaScript" required />
+
+          <label for="project-category">Category</label>
+          <input id="project-category" name="category" type="text" placeholder="e.g. E-commerce" required />
+
+          <label for="project-status">Status</label>
+          <select id="project-status" name="status" required>
+            <option value="In Progress">In Progress</option>
+            <option value="Review">Review</option>
+            <option value="Completed">Completed</option>
+          </select>
+
+          <label for="project-url">Project URL</label>
+          <input
+            id="project-url"
+            name="url"
+            type="url"
+            placeholder="https://example.com"
+          />
+
+          <div class="form-actions">
+            <button id="cancel-project-btn" class="secondary-btn" type="button">Cancel</button>
+            <button class="primary-btn" type="submit">Save Project</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="delete-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="delete-modal-title">
+      <div class="modal-card modal-card-sm">
+        <div class="modal-header">
+          <h3 id="delete-modal-title">Delete Project</h3>
+          <button id="close-delete-modal-btn" class="icon-btn" type="button" aria-label="Close delete dialog">✕</button>
+        </div>
+        <p class="modal-text">Are you sure you want to delete this project?</p>
+        <div class="form-actions">
+          <button id="cancel-delete-btn" class="secondary-btn" type="button">Cancel</button>
+          <button id="confirm-delete-btn" class="table-action table-action-delete" type="button">Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="admin-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="admin-modal-title">
+      <div class="modal-card modal-card-sm admin-modal-card">
+        <div class="modal-header">
+          <h3 id="admin-modal-title">Admin Login</h3>
+          <button id="close-admin-modal-btn" class="icon-btn" type="button" aria-label="Close admin login">✕</button>
+        </div>
+        <p class="modal-text">Enter your admin password to enable edit mode.</p>
+        <form id="admin-form" class="project-form">
+          <label for="admin-password">Password</label>
+          <input id="admin-password" name="password" type="password" placeholder="Enter password" required />
+          <p id="admin-error" class="admin-error hidden" role="alert">Wrong password. Try again.</p>
+          <div class="form-actions">
+            <button id="cancel-admin-btn" class="secondary-btn" type="button">Cancel</button>
+            <button class="primary-btn" type="submit">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
