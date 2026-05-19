@@ -25,4 +25,4 @@ A dynamic and professional dashboard designed specifically to manage and showcas
 ## 🌐 Live Demo
 
 You can explore the live, interactive version of this dashboard here:
-🔗 [Launch Portfolio Dashboard](https://deemaa-hub.github.io/Portfolio-Dashboard/)
+🔗 [ Portfolio Dashboard](https://deemaa-hub.github.io/Portfolio-Dashboard/)
