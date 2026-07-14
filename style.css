@@ -25,6 +25,40 @@ body {
   background: var(--bg-main);
 }
 
+html[dir="rtl"] body {
+  font-family: Tajawal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+}
+
+html[dir="rtl"] .sidebar {
+  border-right: none;
+  border-left: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+html[dir="rtl"] .nav-link.active {
+  box-shadow: inset -4px 0 0 #99f6e4, 0 8px 18px rgba(15, 23, 42, 0.22);
+}
+
+html[dir="rtl"] .projects-table th,
+html[dir="rtl"] .projects-table td {
+  text-align: right;
+}
+
+html[dir="rtl"] .form-actions {
+  justify-content: flex-start;
+}
+
+html[dir="rtl"] .stat-value,
+html[dir="rtl"] .modal-text,
+html[dir="rtl"] .api-demo-note {
+  text-align: right;
+}
+
+@media (max-width: 639px) {
+  html[dir="rtl"] .projects-table td::before {
+    text-align: right;
+  }
+}
+
 .app-shell {
   min-height: 100vh;
   display: flex;
@@ -190,6 +224,69 @@ body {
   border-radius: 0.9rem;
   padding: 1rem;
   box-shadow: var(--shadow);
+}
+
+.api-demo-section {
+  margin-top: 1.35rem;
+  background: var(--bg-surface);
+  border: 1px dashed #94a3b8;
+  border-radius: 0.9rem;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.api-demo-note {
+  margin: 0 0 0.9rem;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+.api-status {
+  border-radius: 0.65rem;
+  padding: 0.6rem 0.85rem;
+  margin-bottom: 0.9rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.api-status.status-loading {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+
+.api-status.status-error {
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+.api-status.status-success {
+  background: #f0fdf4;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+
+.api-add-form {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.api-add-form input {
+  flex: 1;
+  min-width: 200px;
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  padding: 0.6rem 0.7rem;
+  font: inherit;
+  font-size: 0.92rem;
+}
+
+.api-add-form input:focus {
+  outline: 2px solid #a7f3d0;
+  border-color: var(--accent);
 }
 
 .projects-header {
@@ -413,6 +510,7 @@ body {
     opacity: 0;
     transform: translateY(2px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
